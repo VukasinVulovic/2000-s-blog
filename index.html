@@ -1,0 +1,189 @@
+<html lang="sr">
+<head>
+    <title> Moj Prvi Blog </title>
+    <style>
+        .nav {
+            text-align: center;
+            background-color: lightblue;
+            padding: 10pt;
+            border-bottom: 2px solid gray;
+        }
+
+        .nav-item {
+            margin-left: 10pt;
+            margin-right: 10pt;
+            font-size: 20pt;
+        }
+
+        .blog-title {
+            text-align: center; 
+            font-size: 35pt;
+        }
+
+        #posts {
+            display: block;
+            margin: auto;
+            width: 100%;
+        }
+
+        .post {
+            width: 100%;
+            background-color: lightgray;
+            /* padding: 12pt; */
+        }
+
+        .post:nth-of-type(2n) {
+            background-color: lightseagreen;
+        }
+
+        .post-title {
+            font-size: 24pt;
+        }
+
+        .post-gallery {
+            display: block;
+            margin: auto;
+            text-align: center;
+        }
+
+        .gallery-image {
+            width: 100pt;
+        }
+
+        .page-nav {
+            text-align: center;
+            font-size: 20pt;
+        }
+
+        #next-pg {
+            font-size: 20pt;
+        }
+
+        #prev-pg {
+            font-size: 20pt;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <a href="." class="nav-item" style="text-decoration: none;"> 
+                <img src="./src/images/home.png" width="60">
+                <!-- Home  -->
+            </a>
+            <!-- <a href="./authors" class="nav-item"> Autori </a> -->
+        </nav>
+
+        <marquee>
+            <mark style="font-size: 25pt;"> Dobrodosli na <u>Moj Prvi Blog</u>! </mark>
+        </marquee>
+        <h1 class="blog-title"> Moj prvi blog </h1>
+    </header>
+
+    <div id="posts"></div>
+
+    <nav class="page-nav">
+        <a href="./?offset=1" id="prev-pg"> &lt;- </a>
+        <span id="page-num"> 0 </span>
+        <span> od </span>
+        <span id="total-num"> 0 </span>
+        <a href="./?offset=1" id="next-pg"> -&gt; </a>
+    </nav>
+
+    <footer style="display: block; margin: auto; margin-top: 50px; text-align: center; background-color: burlywood;">
+        <p>
+            <h4>
+                Copyright &copy; Vukašin Vulović, 2022
+            </h4>
+            <img width="60" src="https://c.tenor.com/_A27t2_4wH0AAAAC/peanut-butter-jelly-time-banana.gif">
+            <img width="60" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Trollface_non-free.png/220px-Trollface_non-free.png">
+            <img width="60" src="https://cdn.vox-cdn.com/thumbor/SiIyeqmKIJGcOJccz94pHgwmgvQ=/0x0:1400x1400/1200x800/filters:focal(588x588:812x812):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/68837730/poptart1redrainbowfix_1.0.gif">
+            <img width="60" src="data:image/jpeg;base64,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">
+            <img width="60" src="https://c.tenor.com/v4EhnlT6XoAAAAAC/rover-windows-xp.gif">
+        </p>
+    </footer>
+
+    <script>
+        var pageSize = 4;
+
+        var params = new URLSearchParams(window.location.search);
+        var postBox = document.getElementById("posts");
+        var offset = parseInt(params.get('offset') || 0) || 0;
+        var prevPg = document.getElementById("prev-pg");
+        var nextPg = document.getElementById("next-pg");
+
+        prevPg.href = "./?offset=" + (offset - pageSize);
+        nextPg.href = "./?offset=" + (offset + pageSize);
+
+        if(offset <= 1) {
+            prevPg.href = "javascript:void(0)";
+            prevPg.style.opacity = 0.2;
+        }
+
+        getPosts(offset);
+
+        function createPostBox(titleTxt, bodyTxt, photos) {
+            var post = document.createElement("div");
+            post.className = "post";
+
+            var title = document.createElement("h3");
+            title.className = "post-title";
+            title.innerHTML = titleTxt;
+
+            var body = document.createElement("p");
+            body.className = "post-body";
+            body.innerHTML = bodyTxt;
+
+            var gallery = document.createElement("div");
+            gallery.className = "post-gallery";
+
+            for(var i = 0; i < photos.length; i++) {
+                if(!photos[i] || photos[i].length <= 0)
+                    continue;
+
+                var img = document.createElement("img");
+                img.src = photos[i];
+                img.className = "gallery-image";
+                gallery.append(img);
+            }
+
+            post.append(title, body, gallery);
+            return post;
+        }
+        
+        function getPosts(offset) {
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function(e) {
+                if(xhttp.readyState == 4 && xhttp.status == 200) {
+                    var json = JSON.parse(xhttp.responseText);
+
+                    if(offset + pageSize > json["total_count"]) {
+                        nextPg.href = "javascript:void(0)";
+                        nextPg.style.opacity = 0.2;
+                    }
+                    
+                    if(json["count"] <= 0) {
+                        nextPg.href = "javascript:void(0)";
+                        nextPg.style.opacity = 0.2;
+                        return;
+                    }
+
+                    document.getElementById("page-num").innerHTML = Math.floor(json["index"] / pageSize) + 1;
+                    document.getElementById("total-num").innerHTML = Math.floor(json["total_count"] / pageSize) + 1;
+
+                    var posts = json["posts"];
+
+                    for(var i = 0; i < posts.length; i++) {
+                        var post = posts[i];
+                        postBox.append(createPostBox(post["title"], post["body"], post["photos"]));
+                    }
+                }
+            }
+
+            xhttp.open("GET", "./posts.php?offset=" + offset + "&count=" + pageSize);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>
